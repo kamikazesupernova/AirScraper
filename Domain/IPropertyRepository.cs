@@ -1,0 +1,1 @@
+//Handles the storage and retrieval of property data abstracting the logic
