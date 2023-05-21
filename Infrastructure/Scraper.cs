@@ -1,5 +1,6 @@
 using Microsoft.Extensions.Configuration;
 using HtmlAgilityPack;
+using Newtonsoft.Json.Linq;
 
 public class Scraper : IScraper
 {
@@ -15,21 +16,30 @@ public class Scraper : IScraper
         //load page
         HtmlDocument document = web.Load(url);
 
-        // get name
-        var nameNode = document.DocumentNode.SelectSingleNode("//h1[contains(@class, 'listingTitle')]");
-        var name = nameNode != null ? nameNode.InnerText : string.Empty;
-        //Console.WriteLine("HTML Document:\n" + document.DocumentNode.OuterHtml);
+        //parse json
+        HtmlNode scriptNode = document.DocumentNode.SelectSingleNode("//script[@id='data-deferred-state']");
+     
+        var json = scriptNode.InnerText;
+        var data = JObject.Parse(json);
+       var niobeMinimalClientData = data["niobeMinimalClientData"];
+
+       //get name
+       var listingTitleTokens = niobeMinimalClientData?.SelectTokens("..listingTitle");
+       var firstListingTitle = listingTitleTokens?.FirstOrDefault();
+
+       var name = firstListingTitle?.ToString() ?? string.Empty;
 
         // Get property type
-        var propertyTypeNode = document.DocumentNode.SelectSingleNode("//span[contains(@class, 'property-type-label')]");
-        var propertyType = propertyTypeNode != null ? propertyTypeNode.InnerText : string.Empty;
+       var listingTypeTokens = niobeMinimalClientData?.SelectTokens("..propertyType");
+       var firstListingType = listingTypeTokens?.FirstOrDefault();
 
+       var propertyType = firstListingType?.ToString() ?? string.Empty;
+       
         // get bedrooms
-        var bedroomNode = document.DocumentNode.SelectSingleNode("//div[contains(@class, 'bedroom-label')]/following-sibling::span");
-        var bedrooms = bedroomNode != null ? int.Parse(bedroomNode.InnerText) : 0;
+        var descriptionItemsToken = niobeMinimalClientData?.SelectTokens("..descriptionItems");
+        
+        //get bathrooms
 
-        var bathroomNode = document.DocumentNode.SelectSingleNode("//div[contains(@class, 'bathroom-label')]/following-sibling::span");
-        var bathrooms = bathroomNode != null ? int.Parse(bathroomNode.InnerText) : 0;
 
         // get amenities
         var amenitiesNodes = document.DocumentNode.SelectNodes("//div[@data-plugin-in-point-id='AMENITIES_DEFAULT']//div[@data-plugin-in-point-id='AMENITIES_DEFAULT']/div");
@@ -46,8 +56,8 @@ public class Scraper : IScraper
         //write to property      
         _propertyDetails.Name = name;
         _propertyDetails.PropertyType = propertyType;
-        _propertyDetails.Bedrooms = bedrooms;
-        _propertyDetails.Bathrooms = bathrooms;
+        _propertyDetails.Bedrooms = 0;
+        _propertyDetails.Bathrooms = 0;
         _propertyDetails.Amenities = amenities;
     }
 

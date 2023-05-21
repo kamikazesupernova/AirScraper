@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "8GlV5bH0gOnAAiKo505WoG1mPuiPlj+ScVjGg0ynkSIfsZB5eqeq+w0DkhvtV+fRnlB617MOi1tiDoCRFmJzBA==",
+  "dgSpecHash": "/4B8zL2HKvxMI4Rm6O0kyK92Af3ZUShfwVZnRLw9WdtcsArvcOofv5BMJ+PxvvmfnUsLwWRAumid9bQ93x5zEA==",
   "success": true,
   "projectFilePath": "C:\\Users\\wkell\\OneDrive\\Documents\\AirScraper\\AirScraper.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Users\\wkell\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0-preview.4.23259.5\\microsoft.extensions.dependencyinjection.8.0.0-preview.4.23259.5.nupkg.sha512",
     "C:\\Users\\wkell\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0-preview.4.23259.5\\microsoft.extensions.dependencyinjection.abstractions.8.0.0-preview.4.23259.5.nupkg.sha512",
     "C:\\Users\\wkell\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
+    "C:\\Users\\wkell\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512",
     "C:\\Users\\wkell\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
   ],
   "logs": []

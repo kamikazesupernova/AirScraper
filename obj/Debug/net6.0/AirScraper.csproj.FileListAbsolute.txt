@@ -20,3 +20,4 @@ C:\Users\wkell\OneDrive\Documents\AirScraper\bin\Debug\net6.0\Microsoft.Extensio
 C:\Users\wkell\OneDrive\Documents\AirScraper\bin\Debug\net6.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
 C:\Users\wkell\OneDrive\Documents\AirScraper\bin\Debug\net6.0\Microsoft.Extensions.Primitives.dll
 C:\Users\wkell\OneDrive\Documents\AirScraper\obj\Debug\net6.0\AirScraper.csproj.CopyComplete
+C:\Users\wkell\OneDrive\Documents\AirScraper\bin\Debug\net6.0\Newtonsoft.Json.dll
