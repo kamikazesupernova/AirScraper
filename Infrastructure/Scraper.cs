@@ -12,16 +12,21 @@ public class Scraper : IScraper
     }
     public void Scrape(string url)
     {
-        HtmlWeb web = new HtmlWeb();
+        var web = new HtmlWeb();
         //load page
-        HtmlDocument document = web.Load(url);
+        var document = web.Load(url);
 
         //parse json
-        HtmlNode scriptNode = document.DocumentNode.SelectSingleNode("//script[@id='data-deferred-state']");
-     
+        var scriptNode = document.DocumentNode.SelectSingleNode("//script[@id='data-deferred-state']");
+
+       //handle bad links for now...
+        if (scriptNode == null)
+        {
+                throw new Exception("Property Details Not Found.");
+        }
         var json = scriptNode.InnerText;
         var data = JObject.Parse(json);
-       var niobeMinimalClientData = data["niobeMinimalClientData"];
+        var niobeMinimalClientData = data["niobeMinimalClientData"];
 
        //get name
        var listingTitleTokens = niobeMinimalClientData?.SelectTokens("..listingTitle");
